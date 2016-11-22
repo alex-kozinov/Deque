@@ -5,7 +5,6 @@
 #include <deque>
 using namespace std;
 class CRectTest : public ::testing::Test {};
-const int MAXN = 10;
 
 TEST(dequeTests, constructionTest) {
     Deque <int> a;

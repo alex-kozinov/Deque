@@ -102,29 +102,51 @@ TEST(dequeTests, iteratorTest) {
     }
 }
 
+void testSpeed(const int MAXN) {
+    Deque <int> q;
+    for (int i = 0; i < MAXN; ++i) {
+        q.push_back(i);
+    }
+    for (int i = 0; i < MAXN; ++i) {
+        q.pop_back();
+    }
+}
+void randonTestSpeed(const int MAXN) {
+    Deque <int> q;
+    for (int i = 0; i < MAXN; ++i) {
+        if (q.empty() || rand() & 1) {
+            if (rand() & 1) {
+                q.push_back(i);
+            } else {
+                q.push_front(i);
+            }
+        } else {
+            if (rand() & 1) {
+                q.pop_back();
+            } else {
+                q.pop_front();
+            }
+        }
+    }
+}
 TEST(dequeTests, speedTestMillion) {
-    const int MAXN = 1000000;
-    Deque <int> q;
-    for (int i = 0; i < MAXN; ++i)
-        q.push_back(i);
-    for (int i = 0; i < MAXN; ++i)
-        q.pop_front();
+    testSpeed(1000000);
 }
-TEST(dequeTests, speedTest10Million) {
-    const int MAXN = 10000000;
-    Deque <int> q;
-    for (int i = 0; i < MAXN; ++i)
-        q.push_back(i);
-    for (int i = 0; i < MAXN; ++i)
-        q.pop_front();
+TEST(dequeTests, speedTest10Millions) {
+    testSpeed(10000000);
 }
-TEST(dequeTests, speedTest100Million) {
-    const int MAXN = 100000000;
-    Deque <int> q;
-    for (int i = 0; i < MAXN; ++i)
-        q.push_back(i);
-    for (int i = 0; i < MAXN; ++i)
-        q.pop_front();
+TEST(dequeTests, speedTest100Millions) {
+    testSpeed(100000000);
+}
+
+TEST(dequeTests, RndSpeedTestMillion) {
+    testSpeed(1000000);
+}
+TEST(dequeTests, RndSpeedTest10Millions) {
+    testSpeed(10000000);
+}
+TEST(dequeTests, RndSpeedTest100Millions) {
+    testSpeed(100000000);
 }
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
